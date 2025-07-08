@@ -14,7 +14,7 @@ const validate = (schema) => (req, res, next) => {
 
 const validadeProductId = (req, res, next) => {
     try{
-        productIdSchema.parse({ ProductId: +req.params.id})
+        productIdSchema.parse({ id: +req.params.id})
         next()
     } catch(e) {
         res.status(400).json({error: e.errors})
@@ -23,11 +23,11 @@ const validadeProductId = (req, res, next) => {
 
 const validateStockId = (req, res, next) => {
     try{
-        stockIdSchema.parse({ StockId: +req.params.id})
+        stockIdSchema.parse({ id: +req.params.id})
         next()
     } catch (e) {
         res.status(400).json({error: e.errors})
     }
 }
 
-export default { validate, validadeProductId , validateStockId}
+export { validate, validadeProductId , validateStockId}

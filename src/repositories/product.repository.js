@@ -80,7 +80,7 @@ function findProductByIdRepository(idProduct){
 function deleteProductRepository(idProduct){
     return new Promise((resolve, reject) => {
         db.run(`
-            DELETE FROM produtcs WHERE ID = ?`,
+            DELETE FROM products WHERE ID = ?`,
             [idProduct],
             (err) => {
                 if(err){
@@ -93,33 +93,36 @@ function deleteProductRepository(idProduct){
 }
 
 function updateProductRepository(updProduct, idProduct){
-    const fields = ["name", "category", "price", "quantityInStock"]
-    const values = []
-    let sQuery = 'UPDATE products SET' 
+    return new Promise((resolve, reject) => {
+        const fields = ["name", "category", "price", "quantityInStock"]
+        const values = []
+        let sQuery = 'UPDATE products SET' 
 
-    fields.forEach((field) => {
-        if((updProduct[field]) !== 'undefined'){
-            sQuery += ` ${field} = ?,`
-            values.push(updProduct[field])
-        }
+        fields.forEach((field) => {
+            if((updProduct[field]) !== undefined){
+                sQuery += ` ${field} = ?,`
+                values.push(updProduct[field])
+            }
+
+        })
+
+        sQuery = sQuery.slice(0, -1)
+
+        sQuery += ' WHERE ID = ?'
+        values.push(idProduct)
+
+        db.run(sQuery, 
+            values,
+            function(err) {
+                if (err) {
+                    reject (err)
+                } else {
+                    resolve({id: idProduct, ...updProduct})
+                }
+            }
+        )
 
     })
-
-    sQuery = sQuery.slice(0, -1)
-
-    sQuery += ' WHERE ID = ?'
-    values.push(idProduct)
-
-    db.run(sQuery, 
-        values,
-        function(err) {
-            if (err) {
-                reject (err)
-            } else {
-                resolve({id: idProduct, ...updProduct})
-            }
-        }
-    )
 
 }
 

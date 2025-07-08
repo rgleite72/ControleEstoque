@@ -5,7 +5,7 @@ const stockSchema = z.object({
     ProductId : z.number().int().positive(),
     type: z.string(),
     quantity: z.number().int().positive(),
-    movementDate: z.string().regex(/^\d{4}-\d{2}-\d{2}$/, "A data deve estar no formato YYYY-MM-DD")
+    movement_date: z.string().regex(/^\d{4}-\d{2}-\d{2}$/, "A data deve estar no formato YYYY-MM-DD")
 
 })
 

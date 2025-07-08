@@ -3,7 +3,7 @@ import stockMovementService from "../services/stockMovement.service.js";
 async function insertInOutStockController(req, res){
     const newStock = req.body
     try{
-        const stockNew = stockMovementService.insertInOutStockService(newStock)
+        const stockNew = await stockMovementService.insertInOutStockService(newStock)
         res.status(201).send(stockNew)
 
     } catch(e) {

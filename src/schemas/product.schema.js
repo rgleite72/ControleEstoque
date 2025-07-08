@@ -10,7 +10,7 @@ const productSchema = z.object({
 })
 
 const productIdSchema = z.object({
-    id: z.number().id().positive("O Id deve ser um numero positivo")
+    id: z.number().int().positive("O Id deve ser um numero positivo")
 })
 
 export default {

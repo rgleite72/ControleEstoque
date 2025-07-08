@@ -10,7 +10,7 @@ class AuthService{
         const foundUser = await userRepository.findUserByEmailRepository(email)
         if(!foundUser) throw new Error('Usuário não encontrado')
 
-        const isPassValid = bcrypt.compare(foundUser.password, password)
+        const isPassValid = await bcrypt.compare(password, foundUser.password)
         if (!isPassValid) throw new Error('Senha inválida')
 
         const token = jwt.sign(

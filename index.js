@@ -9,6 +9,7 @@ import stockRouter from './src/routers/stockMovement.routers.js'
 
 const app = express()
 
+app.use(express.json());
 app.use('/api/login', loginRouter)
 app.use('/api/users', userRouter)
 app.use('/api/product', productRouter)
@@ -16,6 +17,6 @@ app.use('/api/stock', stockRouter)
 
 
 
-const port = process.env.port
+const port = process.env.PORT
 app.listen(port, () => {console.log(`Servidor esta rodando na porta ${port}`)})
 
