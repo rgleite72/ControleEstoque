@@ -1,0 +1,14 @@
+# Ignorar dependências
+node_modules/
+
+# Ignorar banco SQLite local
+*.sqlite
+*.db
+
+# .env (caso use variáveis de ambiente)
+.env
+
+
+# Arquivos compactados
+*.zip
+*.rar
