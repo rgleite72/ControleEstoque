@@ -13,11 +13,11 @@ db.run(`
 
 function createProductRepository(newProduct){
     return new Promise((resolve, reject) => {
-        const {name, category, price, quantityInStock} = newProduct
+        const {name, category, price, quantity_in_stock} = newProduct
         db.run(`
             INSERT INTO products (name, category, price, quantity_in_stock)
             VALUES (?, ?, ?, ?)`,
-        [name, category, price, quantityInStock],
+        [name, category, price, quantity_in_stock],
         function (err){
             if(err) {
                 reject(err)
@@ -94,7 +94,7 @@ function deleteProductRepository(idProduct){
 
 function updateProductRepository(updProduct, idProduct){
     return new Promise((resolve, reject) => {
-        const fields = ["name", "category", "price", "quantityInStock"]
+        const fields = ["name", "category", "price", "quantity_in_stock"]
         const values = []
         let sQuery = 'UPDATE products SET' 
 
